@@ -347,6 +347,7 @@ void CClientVariables::LoadDefaults(void)
     DEFAULT("browser_remote_websites", true);                                         // Load remote websites?
     DEFAULT("browser_remote_javascript", true);                                       // Execute javascript on remote websites?
     DEFAULT("filter_duplicate_log_lines", true);                                      // Filter duplicate log lines for debug view and clientscript.log
+    DEFAULT("use_discord_rich_presence", true);                                       // Enable Discord's Rich Presence functionality
 
     if (!Exists("locale"))
     {

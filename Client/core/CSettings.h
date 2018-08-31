@@ -134,6 +134,7 @@ protected:
     CGUIEdit*     m_pEditNick;
     CGUICheckBox* m_pSavePasswords;
     CGUICheckBox* m_pAutoRefreshBrowser;
+    CGUICheckBox* m_pUseDiscordRPC = nullptr;
 
     CGUILabel*     m_pVideoGeneralLabel;
     CGUILabel*     m_pVideoResolutionLabel;
@@ -364,6 +365,7 @@ protected:
     bool OnBrowserBlacklistRemove(CGUIElement* pElement);
     bool OnBrowserWhitelistAdd(CGUIElement* pElement);
     bool OnBrowserWhitelistRemove(CGUIElement* pElement);
+    bool OnToggleDiscordRPC(CGUIElement* pElement);
 
     bool OnMouseDoubleClick(CGUIMouseEventArgs Args);
 
