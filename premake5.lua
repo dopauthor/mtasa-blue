@@ -135,6 +135,7 @@ workspace "MTASA"
 		include "vendor/tinygettext"
 		include "vendor/pthreads"
 		include "vendor/libspeex"
+		include "vendor/discord-rpc"
 	end
 	
 	filter {}
