@@ -4436,13 +4436,9 @@ bool CSettings::OnBrowserWhitelistRemove(CGUIElement* pElement)
 bool CSettings::OnToggleDiscordRPC(CGUIElement* pElement)
 {
     if (m_pUseDiscordRPC->GetSelected())
-    {
-        // TODO: Enable discord-rpc
-    }
+        g_pCore->GetDiscordRichPresence().Enable();
     else
-    {
-        // TODO: Disable discord-rpc
-    }
+        g_pCore->GetDiscordRichPresence().Disable();
 
     return true;
 }

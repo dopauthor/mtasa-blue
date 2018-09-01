@@ -24,6 +24,7 @@
 #include "CWebCoreInterface.h"
 #include "CTrayIconInterface.h"
 #include "CChatInterface.h"
+#include "CDiscordInterface.h"
 #include "xml/CXML.h"
 #include <gui/CGUI.h>
 
@@ -173,6 +174,8 @@ public:
     virtual void        SetFakeLagCommandEnabled(bool bEnabled) = 0;
     virtual SString     GetBlueCopyrightString(void) = 0;
     virtual bool ClearChat() = 0;
+
+    virtual Discord::CRichPresenceInterface& GetDiscordRichPresence() = 0;
 };
 
 class CClientTime

@@ -40,6 +40,7 @@ class CCore;
 #include <ijsify.h>
 #include <core/CWebCoreInterface.h>
 #include "CTrayIcon.h"
+#include "CDiscordRichPresence.h"
 
 #define DIRECTINPUT_VERSION 0x0800
 #include <dinput.h>
@@ -274,6 +275,8 @@ public:
     bool        IsFakeLagCommandEnabled(void) { return m_bFakeLagCommandEnabled; }
     SString     GetBlueCopyrightString(void);
 
+    Discord::CRichPresenceInterface& GetDiscordRichPresence() override { return m_DiscordRichPresence; }
+
 private:
     // Core devices.
     CXML*               m_pXML;
@@ -285,10 +288,11 @@ private:
     CModelCacheManager* m_pModelCacheManager;
 
     // Instances (put new classes here!)
-    CXMLFile*          m_pConfigFile;
-    CClientVariables   m_ClientVariables;
-    CWebCoreInterface* m_pWebCore = nullptr;
-    CTrayIcon*         m_pTrayIcon;
+    CXMLFile*            m_pConfigFile;
+    CClientVariables     m_ClientVariables;
+    CWebCoreInterface*   m_pWebCore = nullptr;
+    CTrayIcon*           m_pTrayIcon;
+    CDiscordRichPresence m_DiscordRichPresence;
 
     // Hook interfaces.
     CMessageLoopHook*        m_pMessageLoopHook;

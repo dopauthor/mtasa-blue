@@ -182,6 +182,8 @@ CCore::~CCore(void)
 {
     WriteDebugEvent("CCore::~CCore");
 
+    m_DiscordRichPresence.Shutdown();
+
     // Destroy tray icon
     delete m_pTrayIcon;
 
@@ -1193,6 +1195,17 @@ void CCore::DoPostFramePulse()
         ApplyGameSettings();
 
         m_pGUI->SelectInputHandlers(INPUT_CORE);
+
+        // Enable Discord Rich Presence
+        m_DiscordRichPresence.Initialize();
+
+        bool bUseDiscordRichPresence;
+        CVARS_GET("use_discord_rich_presence", bUseDiscordRichPresence);
+
+        if (bUseDiscordRichPresence)
+            m_DiscordRichPresence.Enable();
+        
+        m_DiscordRichPresence.SetMainMenuPresence();
     }
 
     if (m_pGame->GetSystemState() == 5)            // GS_INIT_ONCE
@@ -1290,6 +1303,8 @@ void CCore::DoPostFramePulse()
 
     if (m_pWebCore)
         m_pWebCore->DoPulse();
+
+    m_DiscordRichPresence.DoPulse();
 
     // Notify the mod manager and the connect manager
     TIMING_CHECKPOINT("-CorePostFrame1");
