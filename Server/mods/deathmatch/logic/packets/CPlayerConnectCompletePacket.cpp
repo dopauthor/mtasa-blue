@@ -21,5 +21,12 @@ bool CPlayerConnectCompletePacket::Write(NetBitStreamInterface& BitStream) const
     // Send the full server version
     BitStream.WriteString(CStaticFunctionDefinitions::GetVersionSortable());
 
+    // Send the max player count and server name
+    if (BitStream.Version() >= 0x06D)
+    {
+        BitStream.Write(static_cast<size_t>(g_pGame->GetConfig()->GetMaxPlayers()));
+        BitStream.WriteString(g_pGame->GetConfig()->GetServerName());
+    }
+
     return true;
 }

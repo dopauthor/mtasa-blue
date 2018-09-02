@@ -565,6 +565,9 @@ void CCore::SetConnected(bool bConnected)
 {
     m_pLocalGUI->GetMainMenu()->SetIsIngame(bConnected);
     UpdateIsWindowMinimized();            // Force update of stuff
+
+    if (!bConnected)
+        m_DiscordRichPresence.SetMainMenuPresence();
 }
 
 bool CCore::IsConnected()

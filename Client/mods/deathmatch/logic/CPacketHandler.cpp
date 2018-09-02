@@ -278,6 +278,30 @@ void CPacketHandler::Packet_ServerConnected(NetBitStreamInterface& bitStream)
     bitStream.ReadString(strServerVersionSortable);
     g_pClientGame->SetServerVersionSortable(strServerVersionSortable);
 
+    // Update Discord Rich Presence
+    const size_t uiPlayerCount = g_pClientGame->GetPlayerManager()->Count() + 1;
+    Discord::CRichPresenceInterface& richPresence = g_pCore->GetDiscordRichPresence();
+
+    if (bitStream.Version() <= 0x06C)
+    {
+        richPresence.SetPresenceServerName(std::string("Playing on a server"));
+        richPresence.SetPresencePlayerCount(uiPlayerCount);
+        richPresence.SetServerPresence(true);
+    }
+    else
+    {
+        size_t uiMaxPlayerCount = 0;
+        bitStream.Read(uiMaxPlayerCount);
+
+        std::string strServerName("");
+        bitStream.ReadString(strServerName);
+
+        richPresence.SetPresenceServerName(strServerName);
+        richPresence.SetPresencePlayerCount(uiPlayerCount);
+        richPresence.SetPresenceMaxPlayerCount(uiMaxPlayerCount);
+        richPresence.SetServerPresence(false);
+    }
+
     // m_Status = CClientGame::STATUS_TRANSFER;
 
     // Tell the core we're finished
