@@ -109,6 +109,9 @@ void CDiscordRichPresence::UpdatePresence()
         break;
     case ePresenceState::ON_SERVER:
         presence.state = "In Game";
+        presence.details = m_strServerName.c_str();
+        presence.partySize = m_uiPlayerCount;
+        presence.partyMax = m_uiMaxPlayerCount;
         break;
     default:
         break;
@@ -124,11 +127,13 @@ void CDiscordRichPresence::SetMainMenuPresence()
     UpdatePresence();
 }
 
-void CDiscordRichPresence::SetServerPresence(const std::string& strServerName, std::size_t uiPlayerCount, std::size_t uiMaxPlayerCount)
+void CDiscordRichPresence::SetServerPresence(bool bOutdatedServer)
 {
-    m_strServerName = strServerName;
-    m_uiPlayerCount = uiPlayerCount;
-    m_uiMaxPlayerCount = uiMaxPlayerCount;
+    if (bOutdatedServer)
+    {
+        // TODO: Read server name and player limit from server query protocol
+    }
+
     m_PresenceState = ePresenceState::ON_SERVER;
     m_tPresenceTime = std::time(nullptr);
     UpdatePresence();

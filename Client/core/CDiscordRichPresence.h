@@ -33,7 +33,7 @@ public:
     const Discord::User* GetUser() override;
     void                 UpdatePresence() override;
     void                 SetMainMenuPresence() override;
-    void                 SetServerPresence(const std::string& strServerName, std::size_t uiPlayerCount, std::size_t uiMaxPlayerCount) override;
+    void                 SetServerPresence(bool bOutdatedServer) override;
     void                 SetPresenceServerName(const std::string& strServerName) override;
     void                 SetPresencePlayerCount(std::size_t uiPlayerCount) override;
     void                 SetPresenceMaxPlayerCount(std::size_t uiMaxPlayerCount) override;

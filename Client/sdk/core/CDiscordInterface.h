@@ -52,7 +52,7 @@ namespace Discord
         virtual const User* GetUser() = 0;
         virtual void        UpdatePresence() = 0;
         virtual void        SetMainMenuPresence() = 0;
-        virtual void        SetServerPresence(const std::string& strServerName, std::size_t uiPlayerCount, std::size_t uiMaxPlayerCount) = 0;
+        virtual void        SetServerPresence(bool bOutdatedServer) = 0;
         virtual void        SetPresenceServerName(const std::string& strServerName) = 0;
         virtual void        SetPresencePlayerCount(std::size_t uiPlayerCount) = 0;
         virtual void        SetPresenceMaxPlayerCount(std::size_t uiMaxPlayerCount) = 0;
